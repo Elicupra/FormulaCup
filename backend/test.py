@@ -26,16 +26,16 @@ def Search_Position_Driver_last_Race(driver_name):
     #Fernando_Alonso = data["MRData"]["RaceTable"]["Races"][0]["Results"][13]["Driver"]["driverId"]
 
     
-    i = data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["Driver"]["givenName"] + " " + data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["Driver"]["familyName"]
-    
+    Driver = data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["Driver"]["givenName"] + " " + data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["Driver"]["familyName"]
+    i=0
     for driver_name in i:
-        posicion = data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["position"]
-        return posicion
         
-      
+        if Driver == driver_name:
+            posicion = data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["position"]
+    
+    return posicion
+    
 
-    
-    
     
     #id_driver =
     #if Driver == driver_name:
@@ -47,11 +47,6 @@ def Search_Position_Driver_last_Race(driver_name):
     #    return print(f"{driver_name} finalizo en la posicion: {position}")
     #else:
     #    return print(f"{driver_name} did not participate in the last race.")
-    
-    
-    
-
-    
     
 
 
