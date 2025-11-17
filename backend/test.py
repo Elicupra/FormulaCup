@@ -21,20 +21,19 @@ def Search_Position_Driver_last_Race(driver_name):
     url = f"{BASE}2025/last/results.json"
     r = requests.get(url)
     data = r.json()
-    #Driver = data["MRData"]["RaceTable"]["Races"][0]["Results"][0]["Driver"]["givenName"] + " " + data["MRData"]["RaceTable"]["Races"][0]["Results"][0]["Driver"]["familyName"]
-    #position = data["MRData"]["RaceTable"]["Races"][0]["Results"][0]["position"]
-    #Fernando_Alonso = data["MRData"]["RaceTable"]["Races"][0]["Results"][13]["Driver"]["driverId"]
-
     
-    Driver = data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["Driver"]["givenName"] + " " + data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["Driver"]["familyName"]
-    i=0
-    for driver_name in i:
+    results = data["MRData"]["RaceTable"]["Races"][0]["Results"]
+    
+    # Buscar el piloto en los resultados
+    for i, result in enumerate(results):
+        driver_full_name = f"{result['Driver']['givenName']} {result['Driver']['familyName']}"
         
-        if Driver == driver_name:
-            posicion = data["MRData"]["RaceTable"]["Races"][0]["Results"][i]["position"]
+        if driver_full_name == driver_name:
+            posicion = result["position"]
+            return print(f"{driver_name} finalizó en la posición: {posicion}")
     
-    return posicion
-    
+    # Si no se encuentra el piloto
+    return print(f"{driver_name} no participó en la última carrera.")
 
     
     #id_driver =
@@ -65,9 +64,9 @@ if __name__ == "__main__":
     Winner_Last_Race()
 
     print("-----")
-   # print("¿Quieres saber la posicion de un piloto en la ultima carrera?")
-    #piloto = input("Introduce el nombre completo del piloto (Ejemplo: Max Verstappen): ")
-    Search_Position_Driver_last_Race("Fernando Alonso")
+    print("¿Quieres saber la posicion de un piloto en la ultima carrera?")
+    piloto = input("Introduce el nombre completo del piloto (Ejemplo: Max Verstappen): ")
+    Search_Position_Driver_last_Race(piloto)
 
 
     #clasificacion_pilotos = get_driver_standings()
